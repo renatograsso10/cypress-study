@@ -1,0 +1,1 @@
+{"total":2,"items":[{"uid":"33322b5d1ace9524c4bfe9c8c02fec81","name":"OAuth2 Authentication Challenge","statistic":{"failed":0,"broken":0,"skipped":0,"passed":6,"unknown":0,"total":6}},{"uid":"9e916e6f6631fd1dee4331577db96a69","name":"Shadow DOM Challenge","statistic":{"failed":0,"broken":0,"skipped":0,"passed":6,"unknown":0,"total":6}}]}
