@@ -13,7 +13,11 @@ permissions:
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
-    
+    strategy:
+      fail-fast: false # Se um falhar, os outros continuam
+      matrix:
+        browser: [chrome, edge, firefox]
+        
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -33,7 +37,7 @@ jobs:
         uses: cypress-io/github-action@v6
         continue-on-error: true # Continue to report generation even if tests fail
         with:
-          browser: chrome
+          browser: ${{ matrix.browser }}
           headed: false
           # Pass env var to enable Allure plugin behavior if needed, 
           # but we configured it in config.js
@@ -42,11 +46,11 @@ jobs:
         if: always() # Run even if tests failed
         run: npm run report:generate
 
-      - name: Upload Allure Report
+      - name: Upload Allure Report (${{ matrix.browser }})
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: allure-report
+          name: allure-report-${{ matrix.browser }}
           path: allure-report
           retention-days: 7
 
