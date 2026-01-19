@@ -1,95 +1,78 @@
-# Cypress Automation Framework
+# Automação Cypress - Shadow DOM & OAuth2
 
 [![Cypress Tests](https://github.com/renatograsso10/cypress-study/actions/workflows/cypress.yml/badge.svg)](https://github.com/renatograsso10/cypress-study/actions/workflows/cypress.yml)
 
-Automated testing project using Cypress to validate Shadow DOM interactions and OAuth2 authentication flows. Refactored to use Page Object Model (POM) for better maintainability.
+Este repositório contém a suíte de testes automatizados E2E para validação de cenários complexos, focando especificamente em **Shadow DOM aninhado** e fluxos de **autenticação OAuth2**.
 
-## Getting Started
+O projeto foi estruturado utilizando padrões de mercado para garantir escalabilidade, facilidade de manutenção e integração contínua.
 
-### Prerequisites
-- Node.js 20+
-- npm
+## Setup Local
 
-### Installation
+### Pré-requisitos
+- **Node.js**: Versão 20 ou superior.
 
+### Instalação
 ```bash
 npm install
 ```
 
-### Running Tests
+### Execução dos Testes
+Scripts facilitadores configurados no `package.json`:
 
-Run all tests in headless mode:
 ```bash
+# Executa todos os testes (Headless)
 npm test
-```
 
-Open Cypress interactive runner:
-```bash
+# Abre o Interactive Runner do Cypress
 npm run test:open
-```
 
-Run specific suites:
-```bash
+# Executa apenas a suíte de Shadow DOM
 npm run test:shadow
-npm run test:oauth
 ```
 
-## Architecture
+## Arquitetura do Projeto
 
-The project follows the Page Object Model (POM) design pattern.
+A solução adota o **Page Object Model (POM)** para separar a lógica de teste da implementação técnica da página.
 
 ```
 cypress/
-├── e2e/                      # Test specifications
-│   ├── shadow-dom.cy.js
-│   └── oauth2.cy.js
-├── fixtures/                 # Test data configuration
-│   └── urls.json
+├── e2e/               # Especificações de teste (Cenários)
+├── fixtures/          # Massa de dados estática
 ├── support/
-│   ├── pages/                # Page Objects (Logic & Selectors)
-│   │   ├── ShadowDomPage.js
-│   │   └── OAuth2Page.js
-│   ├── commands.js           # Custom commands
-│   └── e2e.js                # Global configuration
+│   ├── pages/         # Page Objects (Mapeamento de elementos e ações)
+│   ├── commands.js    # Comandos customizados globais
+│   └── e2e.js         # Configurações globais de execução
 ```
 
-## Features
+## Soluções Técnicas
 
-### Custom Commands
-- `cy.findInShadowRecursive(selector)`: Traverses nested shadow DOMs to find elements.
-- `cy.findInShadow(selector)`: Simple shadow DOM traversal helper.
+### Shadow DOM Recursivo
+Para lidar com elementos encapsulados em múltiplos níveis de Shadow DOM, implementamos um comando personalizado (`cy.findInShadowRecursive`). Ele atravessa a árvore DOM dinamicamente até localizar o elemento alvo, abstraindo a complexidade dos testes.
 
-## Ferramentas de Qualidade (QA Tools)
+### Mock Híbrido de OAuth2
+A validação de login social é realizada através de simulação controlada (mock), garantindo estabilidade na execução sem dependência de provedores externos (Google/Facebook) durante os testes de regressão.
 
-Este projeto utiliza ferramentas de ponta para garantir a excelência do código.
+## Garantia de Qualidade
 
-### Clean Code & Padronização
-Mantemos a casa limpa com **ESLint** (análise estática) e **Prettier** (formatação).
-O **Husky** garante que nada fora do padrão seja commitado.
+Mantemos o padrão de código através de ferramentas de análise estática e formatação.
 
-```bash
-npm run lint      # Verificar problemas
-npm run lint:fix  # Corrigir automaticamente
-```
+1.  **Code Check**:
+    O projeto utiliza **ESLint** e **Prettier**. O **Husky** impede commits fora do padrão.
+    ```bash
+    npm run lint      # Verifica violações
+    npm run lint:fix  # Corrige formatação automaticamente
+    ```
 
-### Relatórios (Allure Reports) 📊
-Geramos relatórios visuais detalhados de cada execução.
-**Nota:** É necessário ter o **Java (JDK 8+)** instalado para gerar os relatórios localmente.
+2.  **Relatórios de Execução**:
+    Utilizamos o **Allure Report** para evidências detalhadas.
+    ```bash
+    npm run test:report
+    npm run report:open
+    # Nota: Requer Java instalado localmente.
+    ```
 
-```bash
-npm run test:report  # Executa testes + Gera relatório
-npm run report:open  # Abre o relatório no navegador
-```
-
-**Online (GitHub Pages):**
-O workflow automaticamente publica o relatório na branch `gh-pages`.
-Configure em **Settings > Pages > Build and deployment > Source: Deploy from a branch > gh-pages**.
-O link aparecerá lá (ex: `https://seu-usuario.github.io/repo/`).
-
-### Docker 🐳
-Para garantir que tudo funcione igual na sua máquina e na minha:
-
-```bash
-docker-compose up --build
-```
-
+3.  **Execução via Docker**:
+    Para garantir paridade de ambiente, utilize o Docker Compose:
+    ```bash
+    docker-compose up --build
+    ```
