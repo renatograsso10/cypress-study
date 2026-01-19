@@ -1,6 +1,6 @@
 # Cypress E2E Test Automation
 
-[![Cypress Tests](https://github.com/SEU_USUARIO/SEU_REPO/actions/workflows/cypress.yml/badge.svg)](https://github.com/SEU_USUARIO/SEU_REPO/actions/workflows/cypress.yml)
+[![Cypress Tests](https://github.com/renatograsso10/cypress-study/actions/workflows/cypress.yml/badge.svg)](https://github.com/renatograsso10/cypress-study/actions/workflows/cypress.yml)
 
 End-to-end test automation using Cypress for Shadow DOM and OAuth2 authentication flow challenges.
 
