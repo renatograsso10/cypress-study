@@ -1,0 +1,20 @@
+{
+  "name": "renatp4",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "cypress run",
+    "test:open": "cypress open",
+    "test:chrome": "cypress run --browser chrome",
+    "test:shadow": "cypress run --spec cypress/e2e/shadow-dom.cy.js",
+    "test:oauth": "cypress run --spec cypress/e2e/oauth2.cy.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "cypress": "^15.9.0"
+  }
+}
