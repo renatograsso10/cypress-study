@@ -43,7 +43,8 @@ class ShadowDomPage {
 
     validateState(text) {
         cy.get(this.hostSelector).shadow().within(() => {
-            cy.get(this.inputSelector).clear().type(text);
+            cy.get(this.inputSelector).clear();
+            cy.get(this.inputSelector).type(text);
             cy.get(this.inputSelector).should('have.value', text);
         });
     }

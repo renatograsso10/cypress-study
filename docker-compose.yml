@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  cypress:
+    build: .
+    container_name: cypress-pro-runner
+    # Mount volume to get report back to host
+    volumes:
+      - ./allure-report:/app/allure-report
+      - ./allure-results:/app/allure-results
+      - ./cypress/videos:/app/cypress/videos
+      - ./cypress/screenshots:/app/cypress/screenshots
+    # Environment variables
+    environment:
+      - CYPRESS_baseUrl=https://qa-playground-azure.vercel.app

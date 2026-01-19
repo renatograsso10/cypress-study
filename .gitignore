@@ -12,6 +12,8 @@ cypress/downloads/
 *.txt
 test-results/
 coverage/
+allure-results/
+allure-report/
 
 # OS
 .DS_Store
