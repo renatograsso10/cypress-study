@@ -81,6 +81,11 @@ npm run test:report  # Executa testes + Gera relatório
 npm run report:open  # Abre o relatório no navegador
 ```
 
+**Online (GitHub Pages):**
+O workflow automaticamente publica o relatório na branch `gh-pages`.
+Configure em **Settings > Pages > Build and deployment > Source: Deploy from a branch > gh-pages**.
+O link aparecerá lá (ex: `https://seu-usuario.github.io/repo/`).
+
 ### Docker 🐳
 Para garantir que tudo funcione igual na sua máquina e na minha:
 
