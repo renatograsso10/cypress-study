@@ -1,1 +1,1 @@
-{"reportName":"Relatório de Qualidade - Cypress","testRuns":[],"statistic":{"failed":0,"broken":0,"skipped":0,"passed":12,"unknown":0,"total":12},"time":{"start":1768858156954,"stop":1768858178242,"duration":21288,"minDuration":332,"maxDuration":5838,"sumDuration":19162}}
+{"reportName":"Relatório de Qualidade - Cypress","testRuns":[],"statistic":{"failed":0,"broken":0,"skipped":0,"passed":12,"unknown":0,"total":12},"time":{"start":1768858192541,"stop":1768858212909,"duration":20368,"minDuration":181,"maxDuration":5691,"sumDuration":17868}}
