@@ -44,6 +44,7 @@
         /* Logo replacement */
         .side-nav__brand { background: none !important; }
         .side-nav__brand:after { content: 'QA SQUAD'; color: white; font-weight: bold; font-size: 18px; margin-left: 10px; }
+        .side-nav__brand:after { content: 'QA SQUAD'; color: white; font-weight: bold; font-size: 18px; margin-left: 10px; display: block; }
         .side-nav__brand-text { display: none !important; }
       </style>
     <!-- CUSTOM_THEME_APPLIED --></head>
@@ -66,7 +67,7 @@
         gtag('js', new Date());
         gtag('config', 'G-FVWC4GKEYS', {
           'allureVersion': '2.36.0',
-          'reportUuid': 'b85b32f4-e23a-459e-9606-89b6a19aba63',
+          'reportUuid': '5e8ab50e-4171-46ff-a6d8-c4e846637394',
           'single_file': false
         });
     </script>
@@ -92,8 +93,7 @@
           'Total': 'Total'
         };
 
-        // Observer to translate dynamic content
-        const observer = new MutationObserver(() => {
+        function translate() {
           document.querySelectorAll('*').forEach(el => {
             // Translate direct text nodes
             if (el.childNodes.length === 1 && el.childNodes[0].nodeType === 3) {
@@ -105,10 +105,11 @@
           });
           
           const title = document.querySelector('.side-nav__brand span');
-          if(title) title.innerText = 'QA Squad';
-        });
+          if(title && title.innerText !== 'QA Squad') title.innerText = 'QA Squad';
+        }
 
-        observer.observe(document.body, { childList: true, subtree: true });
+        // Run periodically to catch React updates without crashing browser
+        setInterval(translate, 500);
       </script>
     </body>
 </html>
