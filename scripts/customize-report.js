@@ -51,6 +51,7 @@ try {
         /* Logo replacement */
         .side-nav__brand { background: none !important; }
         .side-nav__brand:after { content: 'QA SQUAD'; color: white; font-weight: bold; font-size: 18px; margin-left: 10px; }
+        .side-nav__brand:after { content: 'QA SQUAD'; color: white; font-weight: bold; font-size: 18px; margin-left: 10px; display: block; }
         .side-nav__brand-text { display: none !important; }
       </style>
     `;
@@ -77,8 +78,7 @@ try {
           'Total': 'Total'
         };
 
-        // Observer to translate dynamic content
-        const observer = new MutationObserver(() => {
+        function translate() {
           document.querySelectorAll('*').forEach(el => {
             // Translate direct text nodes
             if (el.childNodes.length === 1 && el.childNodes[0].nodeType === 3) {
@@ -90,10 +90,11 @@ try {
           });
           
           const title = document.querySelector('.side-nav__brand span');
-          if(title) title.innerText = 'QA Squad';
-        });
+          if(title && title.innerText !== 'QA Squad') title.innerText = 'QA Squad';
+        }
 
-        observer.observe(document.body, { childList: true, subtree: true });
+        // Run periodically to catch React updates without crashing browser
+        setInterval(translate, 500);
       </script>
     `;
 
